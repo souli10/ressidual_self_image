@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: office_tiles.png
+Format: PNG tileset, 32x32 grid
+Content: Floors, walls, desks, cabinets, doors (office interior)
+Search: "modern interior tileset 32x32" on itch.io or OpenGameArt

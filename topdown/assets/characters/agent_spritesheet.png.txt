@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: agent_spritesheet.png
+Format: PNG spritesheet, 32x32 per frame
+Content: Dark-suited agent, same layout as Neo (can be 2-frame walk)
+Tip: Recolor Neo's sprite in GIMP/Aseprite with dark suit colors

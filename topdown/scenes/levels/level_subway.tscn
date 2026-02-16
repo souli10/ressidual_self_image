@@ -1,0 +1,47 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://scenes/levels/level_subway.gd" id="1"]
+[ext_resource type="PackedScene" path="res://scenes/player/neo.tscn" id="2"]
+[ext_resource type="PackedScene" path="res://scenes/objects/camera_obj.tscn" id="3"]
+[ext_resource type="PackedScene" path="res://scenes/agents/agent.tscn" id="4"]
+[ext_resource type="PackedScene" path="res://scenes/terminal/terminal_ui.tscn" id="5"]
+[ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="6"]
+
+[sub_resource type="RectangleShape2D" id="exit_shape"]
+size = Vector2(80, 16)
+
+[node name="LevelSubway" type="Node2D"]
+script = ExtResource("1")
+
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="."]
+
+[node name="PlatformFloor" type="Polygon2D" parent="."]
+color = Color(0.05, 0.08, 0.05, 1)
+polygon = PackedVector2Array(32, 150, 608, 150, 608, 450, 32, 450)
+
+[node name="SecurityCamera" parent="." instance=ExtResource("3")]
+position = Vector2(500, 165)
+rotation_degrees = 90.0
+
+[node name="Agent" parent="." instance=ExtResource("4")]
+position = Vector2(300, 250)
+
+[node name="Neo" parent="." instance=ExtResource("2")]
+position = Vector2(80, 300)
+
+[node name="ExitZone" type="Area2D" parent="."]
+position = Vector2(570, 400)
+collision_layer = 0
+collision_mask = 4
+
+[node name="ExitShape" type="CollisionShape2D" parent="ExitZone"]
+shape = SubResource("exit_shape")
+
+[node name="ExitVisual" type="Polygon2D" parent="ExitZone"]
+color = Color(0, 0.6, 0, 0.4)
+polygon = PackedVector2Array(-40, -8, 40, -8, 40, 8, -40, 8)
+
+[node name="TerminalUI" parent="." instance=ExtResource("5")]
+[node name="HUD" parent="." instance=ExtResource("6")]
+
+[connection signal="body_entered" from="ExitZone" to="." method="_on_exit_zone_body_entered"]

@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: street_tiles.png
+Format: PNG tileset, 32x32 grid
+Content: Asphalt, sidewalks, building walls, street props
+Search: "urban tileset 32x32" or "city streets pack" on itch.io

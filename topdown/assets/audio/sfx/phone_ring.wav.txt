@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: phone_ring.wav (or .ogg)
+Content: Classic landline phone ring, ~3s loop
+Source: freesound.org - search "phone ring old"

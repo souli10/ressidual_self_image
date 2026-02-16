@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: neo_spritesheet.png
+Format: PNG spritesheet, 32x32 per frame
+Content: Top-down character, 4-direction walk cycle (up/down/left/right), idle pose
+Search: "top down character 32x32" on itch.io or kenney.nl

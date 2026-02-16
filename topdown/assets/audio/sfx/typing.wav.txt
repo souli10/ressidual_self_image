@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: typing.wav (or .ogg)
+Content: Mechanical keyboard click, short and loopable
+Source: freesound.org - search "keyboard typing"

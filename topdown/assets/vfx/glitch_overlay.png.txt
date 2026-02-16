@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: glitch_overlay.png
+Format: PNG, ~1280x720, semi-transparent static/noise
+Content: Fullscreen glitch/scanline overlay for CRT effect

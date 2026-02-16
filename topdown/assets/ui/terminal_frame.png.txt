@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: terminal_frame.png
+Format: PNG (optional - we already have a code-styled panel)
+Content: Decorative border/frame for the terminal window
+Tip: Low priority, skip if not needed

@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: footsteps.wav (or .ogg)
+Content: Walking footsteps, loopable
+Source: freesound.org - search "footsteps indoor"

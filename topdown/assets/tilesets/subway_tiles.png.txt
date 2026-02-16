@@ -1,0 +1,4 @@
+REPLACE THIS FILE with: subway_tiles.png
+Format: PNG tileset, 32x32 grid
+Content: Platform, tracks, industrial walls, underground elements
+Tip: Can recolor office tiles with a darker palette as alternative

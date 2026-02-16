@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: beep_error.wav (or .ogg)
+Content: Negative buzzer/error sound, ~0.5s
+Source: freesound.org - search "error buzzer"

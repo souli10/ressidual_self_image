@@ -1,0 +1,3 @@
+REPLACE THIS FILE with: steam_particle.png
+Format: PNG, ~16x16, white puff on transparent background
+Content: Particle sprite for fog/steam effects

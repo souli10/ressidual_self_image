@@ -1,0 +1,5 @@
+REPLACE THIS FILE with: font_mono.ttf
+Format: TTF font
+Content: Monospace terminal font
+Download: JetBrains Mono from https://fonts.google.com/specimen/JetBrains+Mono
+Priority: HIGH - biggest visual impact for the terminal
