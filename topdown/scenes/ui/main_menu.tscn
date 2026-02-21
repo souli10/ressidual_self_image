@@ -1,0 +1,101 @@
+[gd_scene format=3 uid="uid://cd810wprep7r1"]
+
+[ext_resource type="Script" path="res://scenes/ui/main_menu.gd" id="1"]
+
+[node name="MainMenu" type="Control" unique_id=2143450532]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1")
+
+[node name="BG" type="ColorRect" parent="." unique_id=1770640840]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.01, 0.02, 0.01, 1)
+
+[node name="RainContainer" type="Control" parent="." unique_id=140300516]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TitleBackdrop" type="ColorRect" parent="." unique_id=147955370]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -240.0
+offset_top = -180.0
+offset_right = 240.0
+offset_bottom = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+color = Color(0.01, 0.02, 0.01, 0.9)
+
+[node name="VBoxCenter" type="VBoxContainer" parent="." unique_id=33257098]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="TitleLabel" type="Label" parent="VBoxCenter" unique_id=1596009266]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 1, 0, 1)
+theme_override_font_sizes/font_size = 32
+text = "RESIDUAL SELF IMAGE"
+horizontal_alignment = 1
+
+[node name="SubtitleLabel" type="Label" parent="VBoxCenter" unique_id=896007829]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.6, 0, 0.8)
+theme_override_font_sizes/font_size = 14
+text = "The Matrix Adaptation"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="VBoxCenter" unique_id=8614581]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+
+[node name="ButtonBox" type="VBoxContainer" parent="VBoxCenter" unique_id=1623685000]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="BtnStart" type="Button" parent="VBoxCenter/ButtonBox" unique_id=1280035390]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> START GAME"
+
+[node name="BtnCredits" type="Button" parent="VBoxCenter/ButtonBox" unique_id=2061978153]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> CREDITS"
+
+[node name="BtnQuit" type="Button" parent="VBoxCenter/ButtonBox" unique_id=2037310881]
+custom_minimum_size = Vector2(250, 45)
+layout_mode = 2
+size_flags_horizontal = 4
+text = "> QUIT"

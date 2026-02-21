@@ -1,16 +1,21 @@
 extends CharacterBody2D
 
 ## Agent AI — Finite State Machine: PATROL → INVESTIGATE → CHASE
+## Patrols waypoints, investigates hack failures or last-seen player positions,
+## chases the player on sight. Collision with player restarts the level.
 
 enum State { PATROL, INVESTIGATE, CHASE }
 
 @export var patrol_speed: float = 80.0
 @export var chase_speed: float = 160.0
 @export var investigate_speed: float = 100.0
-@export var vision_range: float = 200.0
-@export var vision_angle_deg: float = 60.0
+@export var vision_range: float = 150.0
+@export var vision_angle_deg: float = 90.0
 @export var investigate_timeout: float = 4.0
 @export var patrol_wait_time: float = 1.5
+
+## If true, this is Agent Smith — reacts to successful hacks too.
+@export var is_smith: bool = false
 
 @export var patrol_points: Array[Vector2] = []
 
@@ -34,8 +39,11 @@ func _ready() -> void:
 	nav_agent.path_desired_distance = 8.0
 	nav_agent.target_desired_distance = 8.0
 
+	# React to hack failures — investigate the noise
 	GameManager.hack_failed.connect(_on_hack_failed)
-	GameManager.agent_alert.connect(_on_agent_alert)
+	# Smith also detects successful hacks
+	if is_smith:
+		GameManager.hack_succeeded.connect(_on_hack_succeeded)
 
 
 func _physics_process(delta: float) -> void:
@@ -55,7 +63,7 @@ func _physics_process(delta: float) -> void:
 	_update_facing()
 	move_and_slide()
 
-	# Check direct collision with player
+	# Check direct collision with player → restart level
 	for i in get_slide_collision_count():
 		var col = get_slide_collision(i)
 		if col.get_collider() is CharacterBody2D:
@@ -64,6 +72,7 @@ func _physics_process(delta: float) -> void:
 				GameManager.restart_level()
 
 
+# -- PATROL --
 func _process_patrol(delta: float) -> void:
 	if patrol_points.is_empty():
 		velocity = Vector2.ZERO
@@ -88,6 +97,7 @@ func _process_patrol(delta: float) -> void:
 	facing_direction = direction
 
 
+# -- INVESTIGATE --
 func _process_investigate(delta: float) -> void:
 	investigate_timer -= delta
 	nav_agent.target_position = last_known_player_pos
@@ -102,6 +112,7 @@ func _process_investigate(delta: float) -> void:
 	facing_direction = direction
 
 
+# -- CHASE --
 func _process_chase(_delta: float) -> void:
 	if player_ref == null or not is_instance_valid(player_ref):
 		_change_state(State.INVESTIGATE)
@@ -120,6 +131,7 @@ func _process_chase(_delta: float) -> void:
 	facing_direction = direction
 
 
+# -- VISION --
 func _check_vision() -> void:
 	var players = get_tree().get_nodes_in_group("player")
 	if players.is_empty():
@@ -150,28 +162,32 @@ func _check_vision() -> void:
 	var result = space.intersect_ray(query)
 
 	if result.is_empty():
+		# Clear line of sight — chase!
 		player_ref = player
 		last_known_player_pos = player.global_position
 		if current_state != State.CHASE:
 			_change_state(State.CHASE)
-			GameManager.agent_alert.emit(player.global_position)
 	else:
 		if current_state == State.CHASE:
 			_change_state(State.INVESTIGATE)
 
 
-func _on_agent_alert(pos: Vector2) -> void:
-	if current_state == State.PATROL:
-		last_known_player_pos = pos
-		_change_state(State.INVESTIGATE)
-
-
+# -- REACTIONS --
 func _on_hack_failed(pos: Vector2) -> void:
-	if current_state == State.PATROL:
+	# Investigate hack failure noise — but seeing Neo is higher priority
+	if current_state == State.PATROL or current_state == State.INVESTIGATE:
 		last_known_player_pos = pos
 		_change_state(State.INVESTIGATE)
 
 
+func _on_hack_succeeded(pos: Vector2) -> void:
+	# Only Smith reacts to successful hacks
+	if current_state == State.PATROL or current_state == State.INVESTIGATE:
+		last_known_player_pos = pos
+		_change_state(State.INVESTIGATE)
+
+
+# -- STATE MANAGEMENT --
 func _change_state(new_state: State) -> void:
 	current_state = new_state
 	match new_state:

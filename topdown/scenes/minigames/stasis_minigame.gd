@@ -99,6 +99,7 @@ func _create_buttons() -> void:
 		var btn := Button.new()
 		btn.custom_minimum_size = btn_size
 		var col := i % cols
+		@warning_ignore("integer_division")
 		var row := i / cols
 		btn.position = Vector2(
 			col * (btn_size.x + spacing) + 10,

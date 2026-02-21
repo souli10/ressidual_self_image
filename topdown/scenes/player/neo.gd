@@ -43,6 +43,25 @@ func _try_hack_at(click_pos: Vector2) -> void:
 	if results.size() > 0:
 		var obj = results[0].collider
 		if obj is Hackable:
-			var dist := global_position.distance_to(obj.global_position)
-			if dist < Constants.HACK_RANGE:
+			if obj.cooldown_remaining > 0.0:
+				_show_locked_message(obj)
+			else:
 				GameManager.request_terminal(obj)
+
+
+func _show_locked_message(obj: Hackable) -> void:
+	var label := Label.new()
+	label.text = "SYSTEM LOCKED"
+	label.add_theme_color_override("font_color", Color(1.0, 0.3, 0.3, 1.0))
+	label.add_theme_font_size_override("font_size", 12)
+	label.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
+	label.position = obj.position + Vector2(-40, -40)
+	label.z_index = 100
+	obj.get_parent().add_child(label)
+	
+	var tween := label.create_tween()
+	tween.set_parallel(true)
+	tween.tween_property(label, "position:y", label.position.y - 30, 1.0)
+	tween.tween_property(label, "modulate:a", 0.0, 1.0).set_delay(0.3)
+	tween.set_parallel(false)
+	tween.tween_callback(label.queue_free)

@@ -18,6 +18,7 @@ var required_successes: int = 3
 var sweet_spot_start: float = 0.0
 var sweet_spot_width: float = 0.0
 var is_active: bool = false
+var _layout_ready: bool = false
 
 
 func _ready() -> void:
@@ -28,16 +29,23 @@ func _ready() -> void:
 func _begin() -> void:
 	successes = 0
 	is_active = true
+	_layout_ready = false
 	# Scale difficulty: faster needle, smaller sweet spot
 	needle_speed = lerpf(1.2, 3.0, difficulty)
 	sweet_spot_width = lerpf(0.25, 0.10, difficulty)
-	_randomize_sweet_spot()
+	sweet_spot_start = randf_range(0.05, 0.95 - sweet_spot_width)
 	_update_progress()
 	instruction_label.text = "[ CLICK when the needle is in the GREEN zone ]"
+	# Defer visual positioning until layout is resolved
+	await get_tree().process_frame
+	await get_tree().process_frame
+	_layout_ready = true
+	_apply_sweet_spot_visual()
+	_apply_needle_visual()
 
 
 func _process(delta: float) -> void:
-	if not visible or not is_active:
+	if not visible or not is_active or not _layout_ready:
 		return
 
 	# Move needle back and forth
@@ -49,9 +57,7 @@ func _process(delta: float) -> void:
 		needle_pos = 0.0
 		needle_direction = 1.0
 
-	# Update needle visual position
-	var bar_width: float = bar_bg.size.x
-	needle.position.x = needle_pos * (bar_width - needle.size.x)
+	_apply_needle_visual()
 
 
 func _input(event: InputEvent) -> void:
@@ -89,10 +95,27 @@ func _on_click() -> void:
 
 func _randomize_sweet_spot() -> void:
 	sweet_spot_start = randf_range(0.05, 0.95 - sweet_spot_width)
-	# Update visual
+	_apply_sweet_spot_visual()
+
+
+func _apply_sweet_spot_visual() -> void:
 	var bar_width: float = bar_bg.size.x
+	if bar_width <= 0:
+		return
 	sweet_spot.position.x = sweet_spot_start * bar_width
 	sweet_spot.size.x = sweet_spot_width * bar_width
+	# Make sure height fills the bar
+	sweet_spot.position.y = 0
+	sweet_spot.size.y = bar_bg.size.y
+
+
+func _apply_needle_visual() -> void:
+	var bar_width: float = bar_bg.size.x
+	if bar_width <= 0:
+		return
+	needle.position.x = needle_pos * (bar_width - needle.size.x)
+	needle.position.y = 0
+	needle.size.y = bar_bg.size.y
 
 
 func _update_progress() -> void:

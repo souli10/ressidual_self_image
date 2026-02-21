@@ -68,8 +68,8 @@ func _process(delta: float) -> void:
 
 func _spawn_block() -> void:
 	var block := Button.new()
-	block.custom_minimum_size = Vector2(50, 22)
-	var block_width := 50.0
+	block.custom_minimum_size = Vector2(80, 30)
+	var block_width := 80.0
 	block.position = Vector2(randf_range(10, game_area.size.x - block_width - 10), -30.0)
 	block.text = _random_code_fragment()
 	block.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2, 1.0))
