@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" path="res://scenes/agents/agent.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/terminal/terminal_ui.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="7"]
+[ext_resource type="PackedScene" path="res://scenes/objects/camera_obj.tscn" id="8"]
 
 [sub_resource type="RectangleShape2D" id="exit_shape"]
 size = Vector2(80, 16)
@@ -32,6 +33,13 @@ position = Vector2(250, 150)
 
 [node name="Agent" parent="." instance=ExtResource("5")]
 position = Vector2(400, 350)
+
+[node name="SecurityCamera" parent="." instance=ExtResource("8")]
+position = Vector2(400, 260)
+rotation_degrees = 90.0
+sweep_speed = 35.0
+sweep_range = 120.0
+pause_duration = 1.0
 
 [node name="Neo" parent="." instance=ExtResource("2")]
 position = Vector2(120, 150)
