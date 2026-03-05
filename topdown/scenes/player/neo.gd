@@ -23,14 +23,68 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _physics_process(_delta: float) -> void:
 	if nav_agent.is_navigation_finished():
+		if is_moving:
+			AudioManager.stop_footsteps()
 		is_moving = false
 		velocity = Vector2.ZERO
 		return
-	is_moving = true
+
 	var next_pos := nav_agent.get_next_path_position()
 	var direction := global_position.direction_to(next_pos)
 	velocity = direction * speed
 	move_and_slide()
+
+	# Only play steps if actually moving
+	if get_real_velocity().length() < 10.0:
+		if is_moving:
+			AudioManager.stop_footsteps()
+		is_moving = false
+		_update_animation(Vector2.ZERO)
+	else:
+		if not is_moving:
+			AudioManager.play_footsteps()
+		is_moving = true
+		_update_animation(direction)
+
+
+func _update_animation(dir: Vector2) -> void:
+	var sprite = $Sprite2D
+	if not sprite:
+		return
+		
+	# Matrix Layout (vframes=5, hframes=4):
+	# Row 0: Invalid
+	# Row 1: North (Up)
+	# Row 2: West (Left)
+	# Row 3: South (Down)
+	# Row 4: East (Right)
+	var row = 3 # Default South
+	sprite.flip_h = false # Matrix has all 4 directions, no need to flip
+	
+	if abs(dir.x) > abs(dir.y):
+		if dir.x > 0:
+			row = 4 # East (Right)
+		else:
+			row = 2 # West (Left)
+	else:
+		if dir.y < 0:
+			row = 1 # North (Up)
+		else:
+			row = 3 # South (Down)
+			
+	if dir == Vector2.ZERO:
+		# Idle: freeze on the first frame of the current row
+		var current_row = sprite.frame / sprite.hframes
+		if current_row == 0:
+			current_row = 3 # Fallback if somehow on invalid row
+		sprite.frame = current_row * sprite.hframes
+		return
+		
+	# Animate using time
+	var anim_speed = 6.0
+	var frames_in_row = sprite.hframes
+	var current_frame = int(Time.get_ticks_msec() / 1000.0 * anim_speed) % frames_in_row
+	sprite.frame = row * frames_in_row + current_frame
 
 
 func _try_hack_at(click_pos: Vector2) -> void:

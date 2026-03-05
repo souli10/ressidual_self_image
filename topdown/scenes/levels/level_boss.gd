@@ -12,6 +12,11 @@ func _ready() -> void:
 	level_active = true
 	_setup_navigation()
 	_setup_agent_patrol()
+	
+	var door = get_node_or_null("SecureDoor")
+	if door:
+		door.object_name = "Secure Node"
+
 	await get_tree().create_timer(1.5).timeout
 	if not level_active or not is_inside_tree():
 		return

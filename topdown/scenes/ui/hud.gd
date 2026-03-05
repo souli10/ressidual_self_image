@@ -55,6 +55,7 @@ func _show_next_dialogue() -> void:
 	for i in full_text.length():
 		dialogue_label.clear()
 		dialogue_label.append_text("[color=#00ff00]" + full_text.substr(0, i + 1) + "[/color]")
+		AudioManager.play_typing()
 		await get_tree().create_timer(typewriter_speed).timeout
 
 	await get_tree().create_timer(msg.duration).timeout

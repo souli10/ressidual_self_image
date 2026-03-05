@@ -15,6 +15,9 @@ func _ready() -> void:
 
 
 func _on_hacked(_command: String) -> void:
+	AudioManager.play_printer()
+	get_tree().create_timer(4.0).timeout.connect(AudioManager.stop_printer)
+	
 	# Emit sound that attracts agents
 	GameManager.broadcast_hack_failure(global_position)
 

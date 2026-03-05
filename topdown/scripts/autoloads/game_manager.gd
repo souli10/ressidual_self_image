@@ -39,11 +39,13 @@ func request_terminal(target: Node) -> void:
 
 
 func restart_level() -> void:
+	AudioManager.stop_all_sfx()
 	resume_world()
 	get_tree().reload_current_scene()
 
 
 func start_new_game() -> void:
+	AudioManager.stop_all_sfx()
 	current_level_index = 0
 	faith_percent = 0.0
 	tank_connected = true
@@ -53,6 +55,7 @@ func start_new_game() -> void:
 
 
 func load_next_level() -> void:
+	AudioManager.stop_all_sfx()
 	current_level_index += 1
 	print("[GameManager] load_next_level called, index now: ", current_level_index, " / ", level_sequence.size())
 	if current_level_index < level_sequence.size():
@@ -74,11 +77,13 @@ func load_next_level() -> void:
 
 
 func load_level(level_name: String) -> void:
+	AudioManager.stop_all_sfx()
 	resume_world()
 	get_tree().change_scene_to_file(level_name)
 
 
 func load_main_menu() -> void:
+	AudioManager.stop_all_sfx()
 	current_level_index = 0
 	faith_percent = 0.0
 	tank_connected = true

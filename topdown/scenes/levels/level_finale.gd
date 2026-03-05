@@ -31,13 +31,15 @@ func _setup_navigation() -> void:
 	nav_region.navigation_polygon = GameManager.build_nav_for_level([outline], self)
 
 func activate_fog() -> void:
+	AudioManager.play_pipeburst()
 	fog_active = true
+	fog_overlay.color = Color(0.05, 0.05, 0.05, 1.0)
 	fog_overlay.visible = true
 	var players = get_tree().get_nodes_in_group("player")
 	if players.size() > 0:
 		var light = PointLight2D.new()
 		light.texture = preload("res://assets/vfx/steam_particle.png")
-		light.texture_scale = 8.0
+		light.texture_scale = 1.0 # Limited 2-meter radius
 		light.color = Color(0.2, 0.8, 0.2, 0.6)
 		light.energy = 1.5
 		players[0].add_child(light)

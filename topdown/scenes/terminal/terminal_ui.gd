@@ -78,6 +78,10 @@ func open(target: Node) -> void:
 	trace_percent = 0.0
 	trace_bar.value = 0.0
 	trace_speed = lerpf(8.0, 15.0, GameManager.faith_percent / 100.0)
+	
+	if current_target.object_name == "Secure Node":
+		trace_speed = 35.0  # Very fast trace
+		
 	pending_command = ""
 	minigame_active = false
 
@@ -177,7 +181,10 @@ func _launch_minigame(cmd: String) -> void:
 	var scene: PackedScene = null
 	match cmd:
 		"unlock":
-			scene = tumbler_scene
+			if current_target and current_target.object_name == "Secure Node":
+				scene = deconstruct_scene # Harder minigame
+			else:
+				scene = tumbler_scene
 		"delete":
 			scene = deconstruct_scene
 		"ping":
@@ -219,6 +226,8 @@ func _on_minigame_lost() -> void:
 		current_target.cooldown_remaining = GameManager.get_cooldown()
 		if current_target is Node2D:
 			GameManager.broadcast_hack_failure(current_target.global_position)
+		if current_target.object_name == "Secure Node":
+			GameManager.agent_alert.emit(current_target.global_position)
 	_kick_from_terminal("HACK FAILED — SYSTEM LOCKOUT ENGAGED")
 
 

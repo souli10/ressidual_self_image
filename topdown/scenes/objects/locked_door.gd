@@ -10,6 +10,7 @@ func _ready() -> void:
 
 
 func _on_hacked(_command: String) -> void:
+	AudioManager.play_door_open()
 	# Remove from ALL collision layers so nothing blocks on us
 	collision_layer = 0
 	collision_mask = 0

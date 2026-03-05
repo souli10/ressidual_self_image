@@ -8,6 +8,7 @@ var door_unlocked: bool = false
 
 
 func _ready() -> void:
+	AudioManager.play_elevator()
 	GameManager.current_level = "level_isolation"
 	GameManager.tank_connected = true
 	_setup_navigation()
@@ -27,6 +28,7 @@ func _ready() -> void:
 
 
 func _trigger_disconnect() -> void:
+	AudioManager.play_disconnect()
 	var camera = get_viewport().get_camera_2d()
 	if camera:
 		var original_offset = camera.offset
@@ -63,5 +65,6 @@ func _on_exit_zone_body_entered(body: Node2D) -> void:
 			if hud and hud.has_method("show_message"):
 				hud.show_message("SYSTEM", "Elevator door is still locked. Hack it to proceed.", 2.0)
 			return
+		AudioManager.play_elevator_door()
 		level_active = false
 		GameManager.load_next_level()
