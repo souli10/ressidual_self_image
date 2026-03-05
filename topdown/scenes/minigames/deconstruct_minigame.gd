@@ -16,9 +16,12 @@ var spawn_timer: float = 0.0
 var spawn_interval: float = 0.8
 var fall_speed: float = 120.0
 var is_active: bool = false
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	instruction_label.add_theme_font_override("font", custom_font)
+	progress_label.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 
@@ -74,6 +77,7 @@ func _spawn_block() -> void:
 	block.text = _random_code_fragment()
 	block.add_theme_color_override("font_color", Color(1.0, 0.2, 0.2, 1.0))
 	block.add_theme_color_override("font_hover_color", Color(1.0, 0.5, 0.5, 1.0))
+	block.add_theme_font_override("font", custom_font)
 
 	var style := StyleBoxFlat.new()
 	style.bg_color = Color(0.4, 0.0, 0.0, 0.9)

@@ -7,9 +7,14 @@ extends Control
 @onready var continue_label: Label = $ContinueLabel
 
 var phase: int = 0
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	title_label.add_theme_font_override("font", custom_font)
+	subtitle_label.add_theme_font_override("normal_font", custom_font)
+	subtitle_label.add_theme_font_override("bold_font", custom_font)
+	continue_label.add_theme_font_override("font", custom_font)
+	
 	title_label.modulate.a = 0.0
 	subtitle_label.modulate.a = 0.0
 	continue_label.modulate.a = 0.0

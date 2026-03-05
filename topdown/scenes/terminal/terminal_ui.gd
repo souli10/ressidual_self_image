@@ -34,9 +34,16 @@ var is_being_kicked: bool = false
 ## Reference to the panel's original border style for flash effect
 var _normal_border_color: Color = Color(0.0, 0.6, 0.0, 1.0)
 var _error_border_color: Color = Color(1.0, 0.0, 0.0, 1.0)
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	target_label.add_theme_font_override("font", custom_font)
+	inspector_label.add_theme_font_override("normal_font", custom_font)
+	inspector_label.add_theme_font_override("bold_font", custom_font)
+	output_log.add_theme_font_override("normal_font", custom_font)
+	output_log.add_theme_font_override("bold_font", custom_font)
+	command_input.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	GameManager.terminal_requested.connect(open)

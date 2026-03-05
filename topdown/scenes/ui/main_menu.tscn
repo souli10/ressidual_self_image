@@ -63,15 +63,15 @@ alignment = 1
 [node name="TitleLabel" type="Label" parent="VBoxCenter" unique_id=1596009266]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 1, 0, 1)
-theme_override_font_sizes/font_size = 32
+theme_override_font_sizes/font_size = 72
 text = "RESIDUAL SELF IMAGE"
 horizontal_alignment = 1
 
 [node name="SubtitleLabel" type="Label" parent="VBoxCenter" unique_id=896007829]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0.6, 0, 0.8)
-theme_override_font_sizes/font_size = 14
-text = "The Matrix Adaptation"
+theme_override_font_sizes/font_size = 32
+text = "THE MATRIX ADAPTATION"
 horizontal_alignment = 1
 
 [node name="Spacer" type="Control" parent="VBoxCenter" unique_id=8614581]
@@ -83,19 +83,19 @@ layout_mode = 2
 theme_override_constants/separation = 12
 
 [node name="BtnStart" type="Button" parent="VBoxCenter/ButtonBox" unique_id=1280035390]
-custom_minimum_size = Vector2(250, 45)
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "> START GAME"
+text = "START GAME"
 
 [node name="BtnCredits" type="Button" parent="VBoxCenter/ButtonBox" unique_id=2061978153]
-custom_minimum_size = Vector2(250, 45)
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "> CREDITS"
+text = "CREDITS"
 
 [node name="BtnQuit" type="Button" parent="VBoxCenter/ButtonBox" unique_id=2037310881]
-custom_minimum_size = Vector2(250, 45)
+custom_minimum_size = Vector2(250, 60)
 layout_mode = 2
 size_flags_horizontal = 4
-text = "> QUIT"
+text = "QUIT"

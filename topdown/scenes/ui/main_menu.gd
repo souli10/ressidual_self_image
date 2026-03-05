@@ -18,8 +18,16 @@ const RAIN_COLUMNS: int = 50
 var title_visible: bool = false
 var fade_timer: float = 0.0
 
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
+
 
 func _ready() -> void:
+	title_label.add_theme_font_override("font", custom_font)
+	subtitle_label.add_theme_font_override("font", custom_font)
+	btn_start.add_theme_font_override("font", custom_font)
+	btn_credits.add_theme_font_override("font", custom_font)
+	btn_quit.add_theme_font_override("font", custom_font)
+	
 	_setup_rain()
 	_setup_buttons()
 	_animate_title()
@@ -38,7 +46,8 @@ func _setup_rain() -> void:
 		col.horizontal_alignment = HORIZONTAL_ALIGNMENT_CENTER
 		col.vertical_alignment = VERTICAL_ALIGNMENT_TOP
 		col.add_theme_color_override("font_color", Color(0.0, 0.6, 0.0, 0.5))
-		col.add_theme_font_size_override("font_size", 14)
+		col.add_theme_font_override("font", custom_font)
+		col.add_theme_font_size_override("font_size", 24)
 		col.position = Vector2(i * 26, -randf_range(0, 400))
 		col.size = Vector2(26, 900)
 		col.clip_text = true
@@ -91,7 +100,7 @@ func _setup_buttons() -> void:
 		
 		btn.add_theme_color_override("font_color", Color(0.0, 1.0, 0.0))
 		btn.add_theme_color_override("font_hover_color", Color(0.5, 1.0, 0.5))
-		btn.add_theme_font_size_override("font_size", 18)
+		btn.add_theme_font_size_override("font_size", 36)
 
 
 func _animate_title() -> void:

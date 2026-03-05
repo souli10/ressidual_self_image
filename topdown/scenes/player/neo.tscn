@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://c2c5f2lasaf1t" path="res://assets/characters/neo/Agent_Walk_SpriteSheet_4way.png" id="2_4d7wv"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_neo"]
-size = Vector2(20, 33)
+size = Vector2(20, 47)
 
 [node name="Neo" type="CharacterBody2D" unique_id=1955037728]
 collision_layer = 4
@@ -17,15 +17,14 @@ scale = Vector2(2, 2)
 texture = ExtResource("2_4d7wv")
 hframes = 4
 vframes = 5
-frame = 15
+frame = 12
 
 [node name="Placeholder" type="Polygon2D" parent="." unique_id=1723304414]
 color = Color(0, 0.9019608, 0, 0)
 polygon = PackedVector2Array(-8, -12, 8, -12, 8, 12, -8, 12)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1724497035]
-visible = false
-position = Vector2(0, 0.5)
+position = Vector2(0, 7.5)
 shape = SubResource("RectangleShape2D_neo")
 
 [node name="NavigationAgent2D" type="NavigationAgent2D" parent="." unique_id=430047576]

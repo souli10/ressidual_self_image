@@ -16,9 +16,12 @@ var hold_timer: float = 0.0
 var is_active: bool = false
 var time_elapsed: float = 0.0
 var max_time: float = 12.0
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	instruction_label.add_theme_font_override("font", custom_font)
+	match_label.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 

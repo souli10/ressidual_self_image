@@ -79,9 +79,7 @@ color = Color(0, 0.6, 0, 0.4)
 polygon = PackedVector2Array(-40, -8, 40, -8, 40, 8, -40, 8)
 
 [node name="TerminalUI" parent="." unique_id=1914589216 instance=ExtResource("6")]
-visible = false
 
 [node name="HUD" parent="." unique_id=241466669 instance=ExtResource("7")]
-visible = false
 
 [connection signal="body_entered" from="ExitZone" to="." method="_on_exit_zone_body_entered"]

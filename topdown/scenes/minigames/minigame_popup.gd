@@ -14,9 +14,12 @@ signal popup_lost
 @onready var game_container: Control = $Panel/Margin/VBox/GameContainer
 
 var current_minigame: MinigameBase = null
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	header_label.add_theme_font_override("font", custom_font)
+	command_label.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 	_apply_style()

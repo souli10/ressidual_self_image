@@ -28,9 +28,12 @@ var show_interval: float = 0.6
 var buttons: Array[Button] = []
 var time_limit: float = 10.0
 var time_remaining: float = 10.0
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	instruction_label.add_theme_font_override("font", custom_font)
+	progress_label.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 
@@ -120,6 +123,7 @@ func _create_buttons() -> void:
 		btn.add_theme_stylebox_override("hover", hover_style)
 
 		btn.add_theme_color_override("font_color", NODE_COLORS[i])
+		btn.add_theme_font_override("font", custom_font)
 		btn.pressed.connect(_on_node_pressed.bind(i))
 		node_container.add_child(btn)
 		buttons.append(btn)

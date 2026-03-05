@@ -7,9 +7,12 @@ extends Control
 
 var scroll_speed: float = 30.0
 var can_go_back: bool = false
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	credits_text.add_theme_font_override("normal_font", custom_font)
+	credits_text.add_theme_font_override("bold_font", custom_font)
+	back_label.add_theme_font_override("font", custom_font)
 	can_go_back = false
 	_build_credits()
 	

@@ -24,6 +24,13 @@ GameManager="*res://scripts/autoloads/game_manager.gd"
 CommandParser="*res://scripts/autoloads/command_parser.gd"
 AudioManager="*res://scripts/autoloads/audio_manager.gd"
 
+[gui]
+
+theme/custom_font="res://assets/fonts/VT323-Regular.ttf"
+theme/default_font_antialiasing=0
+theme/default_font_generate_mipmaps=false
+theme/default_font_multichannel_signed_distance_field=false
+
 [display]
 
 window/size/viewport_width=1280

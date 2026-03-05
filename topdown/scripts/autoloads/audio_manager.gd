@@ -10,6 +10,9 @@ var sfx_typing: AudioStreamPlayer
 var sfx_door_open: AudioStreamPlayer
 var sfx_printer: AudioStreamPlayer
 var sfx_elevator: AudioStreamPlayer
+var sfx_elevator_door: AudioStreamPlayer
+var sfx_pipeburst: AudioStreamPlayer
+var sfx_disconnect: AudioStreamPlayer
 
 var music_stream = preload("res://assets/audio/music/main_menu_and_credits.mp3")
 var footsteps_stream = preload("res://assets/audio/sfx/freesound_community-concrete-footsteps-6752.mp3")
@@ -103,4 +106,3 @@ func stop_all_sfx() -> void:
 	if sfx_elevator_door: sfx_elevator_door.stop()
 	if sfx_pipeburst: sfx_pipeburst.stop()
 	if sfx_disconnect: sfx_disconnect.stop()
-

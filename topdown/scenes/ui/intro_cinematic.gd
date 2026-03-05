@@ -14,9 +14,11 @@ var lines: Array[Dictionary] = [
 
 var is_playing: bool = true
 var can_skip: bool = false
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	text_label.add_theme_font_override("font", custom_font)
+	skip_label.add_theme_font_override("font", custom_font)
 	text_label.clear()
 	skip_label.modulate.a = 0.0
 	_play_sequence()

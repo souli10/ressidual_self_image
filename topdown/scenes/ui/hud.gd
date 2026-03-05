@@ -11,9 +11,14 @@ extends CanvasLayer
 var dialogue_queue: Array[Dictionary] = []
 var is_showing_dialogue: bool = false
 var typewriter_speed: float = 0.03
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	faith_label.add_theme_font_override("font", custom_font)
+	speaker_label.add_theme_font_override("font", custom_font)
+	dialogue_label.add_theme_font_override("normal_font", custom_font)
+	dialogue_label.add_theme_font_override("bold_font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	dialogue_panel.visible = false
 	_update_faith_display()

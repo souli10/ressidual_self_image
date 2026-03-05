@@ -19,9 +19,12 @@ var sweet_spot_start: float = 0.0
 var sweet_spot_width: float = 0.0
 var is_active: bool = false
 var _layout_ready: bool = false
-
+var custom_font = preload("res://assets/fonts/VT323-Regular.ttf")
 
 func _ready() -> void:
+	progress_label.add_theme_font_override("font", custom_font)
+	instruction_label.add_theme_font_override("font", custom_font)
+	
 	process_mode = Node.PROCESS_MODE_ALWAYS
 	visible = false
 
