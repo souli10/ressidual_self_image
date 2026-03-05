@@ -1,22 +1,22 @@
-[gd_scene load_steps=2 format=3]
+[gd_scene load_steps=3 format=3]
 
 [ext_resource type="Script" path="res://scenes/objects/distraction_obj.gd" id="1"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Big-Office-Printer.png" id="2"]
 
 [sub_resource type="RectangleShape2D" id="printer_shape"]
-size = Vector2(40, 32)
+size = Vector2(32, 32)
 
 [node name="Printer" type="StaticBody2D"]
 collision_layer = 2
 collision_mask = 0
 script = ExtResource("1")
 
-[node name="Visual" type="Polygon2D" parent="."]
-color = Color(0.3, 0.5, 0.3, 1)
-polygon = PackedVector2Array(-20, -16, 20, -16, 20, 16, -20, 16)
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2")
 
 [node name="StatusLED" type="Polygon2D" parent="."]
 color = Color(0, 0.8, 0, 1)
-polygon = PackedVector2Array(12, -12, 16, -12, 16, -8, 12, -8)
+polygon = PackedVector2Array(8, -8, 12, -8, 12, -4, 8, -4)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("printer_shape")

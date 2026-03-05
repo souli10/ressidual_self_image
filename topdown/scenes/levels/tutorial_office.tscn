@@ -7,6 +7,14 @@
 [ext_resource type="PackedScene" path="res://scenes/objects/distraction_obj.tscn" id="5"]
 [ext_resource type="PackedScene" path="res://scenes/terminal/terminal_ui.tscn" id="6"]
 [ext_resource type="PackedScene" path="res://scenes/ui/hud.tscn" id="7"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Desk.png" id="8"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Chair.png" id="9"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Small-Plant.png" id="10"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Bin.png" id="11"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Filing-Cabinet-Tall.png" id="12"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Water-Dispenser.png" id="13"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Vending-Machine.png" id="14"]
+[ext_resource type="Texture2D" path="res://assets/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Office-Furniture-Pixel-Art/Big-Plant.png" id="15"]
 
 [sub_resource type="RectangleShape2D" id="exit_shape"]
 size = Vector2(80, 16)
@@ -53,6 +61,44 @@ polygon = PackedVector2Array(32, 500, 400, 500, 400, 540, 32, 540)
 [node name="MidWall2Right" type="Polygon2D" parent="Walls" unique_id=1243716517]
 color = Color(0.2, 0.28, 0.2, 1)
 polygon = PackedVector2Array(460, 500, 608, 500, 608, 540, 460, 540)
+
+[node name="Decorations" type="Node2D" parent="."]
+
+[node name="Desk" type="Sprite2D" parent="Decorations"]
+position = Vector2(80, 80)
+texture = ExtResource("8")
+
+[node name="Chair" type="Sprite2D" parent="Decorations"]
+position = Vector2(80, 110)
+texture = ExtResource("9")
+
+[node name="Plant1" type="Sprite2D" parent="Decorations"]
+position = Vector2(350, 60)
+texture = ExtResource("10")
+
+[node name="Bin" type="Sprite2D" parent="Decorations"]
+position = Vector2(120, 90)
+texture = ExtResource("11")
+
+[node name="Cabinet1" type="Sprite2D" parent="Decorations"]
+position = Vector2(50, 350)
+texture = ExtResource("12")
+
+[node name="Cabinet2" type="Sprite2D" parent="Decorations"]
+position = Vector2(80, 350)
+texture = ExtResource("12")
+
+[node name="WaterDispenser" type="Sprite2D" parent="Decorations"]
+position = Vector2(550, 350)
+texture = ExtResource("13")
+
+[node name="VendingMachine" type="Sprite2D" parent="Decorations"]
+position = Vector2(550, 650)
+texture = ExtResource("14")
+
+[node name="BigPlant" type="Sprite2D" parent="Decorations"]
+position = Vector2(300, 650)
+texture = ExtResource("15")
 
 [node name="LockedDoor" parent="." unique_id=450363126 instance=ExtResource("3")]
 position = Vector2(210, 280)
